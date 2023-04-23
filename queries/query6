@@ -1,0 +1,23 @@
+
+WITH RECURSIVE datehours(dh) AS ( 
+    SELECT "2012-10-22 00:51:00"
+        UNION ALL 
+    SELECT DATETIME(dh, "+1 HOURS") FROM datehours WHERE dh<'2012-11-06 23:51:00' 
+),
+tripcounts AS(
+    SELECT strftime("%Y-%m-%d %H:51:00", start_datetime) AS dh, COUNT(start_datetime) AS count FROM taxitrips
+    WHERE DATE(start_datetime)>='2012-10-22' AND DATE(start_datetime)<='2012-11-06' GROUP BY dh
+        UNION ALL
+    SELECT strftime("%Y-%m-%d %H:51:00", start_datetime) AS dh, COUNT(start_datetime) AS count FROM ubertrips
+    WHERE DATE(start_datetime)>='2012-10-22' AND DATE(start_datetime)<='2012-11-06' GROUP BY dh
+)
+
+SELECT datehours.dh, 
+        SUM(tripcounts.count), 
+        hourlyweather.HourlyPrecipitation,
+        hourlyweather.HourlyWindSpeed
+FROM datehours
+LEFT JOIN tripcounts ON datehours.dh=tripcounts.dh
+LEFT JOIN hourlyweather ON datehours.dh=strftime("%Y-%m-%d %H:51:00", hourlyweather.datetime)
+GROUP BY datehours.dh
+ORDER BY datehours.dh ASC;

@@ -1,0 +1,12 @@
+
+WITH RECURSIVE alltrips2009 AS ( 
+    SELECT start_datetime, distance FROM taxitrips
+    WHERE strftime("%Y", start_datetime)="2009"
+        UNION ALL 
+    SELECT start_datetime, distance FROM ubertrips
+    WHERE strftime("%Y", start_datetime)="2009"
+)
+SELECT DATE(start_datetime) AS date, COUNT(distance) AS count, avg(distance) FROM alltrips2009
+GROUP BY date
+ORDER BY count DESC
+LIMIT 10

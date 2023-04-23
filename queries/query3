@@ -1,0 +1,13 @@
+
+WITH RECURSIVE alltrips201307 AS ( 
+    SELECT start_datetime, distance FROM taxitrips
+    WHERE strftime("%Y", start_datetime)="2013" AND strftime("%m", start_datetime)="07"
+        UNION ALL 
+    SELECT start_datetime, distance FROM ubertrips
+    WHERE strftime("%Y", start_datetime)="2013" AND strftime("%m", start_datetime)="07"
+)
+
+SELECT distance FROM alltrips201307
+ORDER BY distance ASC
+LIMIT 1
+OFFSET (SELECT COUNT(distance) FROM alltrips201307)*95/100-1;

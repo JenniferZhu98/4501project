@@ -1,0 +1,17 @@
+
+WITH RECURSIVE alltrips2014 AS ( 
+    SELECT DATE(start_datetime) AS date, COUNT(start_datetime) AS count FROM ubertrips
+    WHERE strftime("%Y", start_datetime)="2014" GROUP BY date
+        UNION ALL
+    SELECT DATE(start_datetime) AS date, COUNT(start_datetime) AS count FROM taxitrips
+    WHERE strftime("%Y", start_datetime)="2014" GROUP BY date
+)
+
+SELECT alltrips2014.date AS date, 
+    avg(dailyweather.DailyAverageWindSpeed) AS avg, 
+    SUM(alltrips2014.count) AS count
+FROM alltrips2014
+LEFT JOIN dailyweather ON alltrips2014.date=DATE(dailyweather.datetime)
+GROUP BY date
+ORDER BY avg DESC
+LIMIT 10;

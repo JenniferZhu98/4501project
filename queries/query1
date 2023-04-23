@@ -1,0 +1,5 @@
+
+SELECT strftime("%H", start_datetime) AS hour, COUNT(taxitripsId) AS popularity
+FROM taxitrips
+GROUP BY hour
+ORDER BY popularity DESC

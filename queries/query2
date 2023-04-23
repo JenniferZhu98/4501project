@@ -1,0 +1,5 @@
+
+SELECT strftime("%w", start_datetime) AS weekday, COUNT(ubertripsId) AS popularity
+FROM ubertrips
+GROUP BY weekday
+ORDER BY popularity DESC
