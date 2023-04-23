@@ -7,21 +7,19 @@ Part I- This section is devoted to Data Processing. The code loads data for Taxi
 
 Part II- This section is devoted to Storing Data. The code populates a SQLite database with tables generated from the datasets from Part I into a these tables which will be used for follow on data analysis. 
 
-Part III- This sect:ion is devoted to Extracting Data. The code answers specific questions posed by the Project tasks by querying the data and returning an understanding of the data to the user.
+Part III- This section is devoted to Extracting Data. The code answers specific questions posed by the Project tasks by querying the data and returning an understanding of the data to the user.
 
 Part IV- This section is devoted to Data Visualization. The code presents six different visualizations of the data, offering the user easy and quick intepretation of the data.
 
 
 Location of Code:
-The source code is currently hosted on GitH at ................
+The source code is currently hosted on GitH at https://github.com/JenniferZhu98/4501project
 
 Proiject Team Name:  Project Group 18
 
 
-Project Team Collbaborators:  
-                                Zhengyi Zhu
-                                Binghao Guo
-                                Mike Cellini
+Project Team Collaborators:  
+                                Zhengyi Zhu, Binghao Guo, Mike Cellini
                                 
 Collaborators UNI: [zz2875, bg2781, mjc2328]
                                 
