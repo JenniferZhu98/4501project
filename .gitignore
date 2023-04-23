@@ -5,5 +5,8 @@ taxi_data/
 taxi_zones/
 weather/
 *.csv
+*.parquet
 *.db
 *.pdf
+*.png
+*.zip
