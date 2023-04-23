@@ -1,0 +1,8 @@
+
+WITH RECURSIVE sunrise_countbyhour AS(
+SELECT DATE(datetime) AS date, Sunrise/100 AS Sunrise_hour
+FROM sunrise WHERE Sunrise IS NOT NULL
+)
+SELECT Sunrise_hour, COUNT(Sunrise_hour) AS count FROM sunrise_countbyhour
+GROUP BY Sunrise_hour
+ORDER BY count DESC;
